@@ -28,63 +28,112 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition register-page">
-<div class="register-box">
+  <?php
+  if($_GET){
+    if($_GET['s']=="c"){
+      ?>
+      <div class="container">
+        <section class="content" style="min-height: 0px;">
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-check"></i> สำเร็จ!</h4>
+            ลงทะเบียนเรียบร้อย ! <a href="login.php">เข้าสู่ระบบ</a>
+          </div>
+        </section>
+      </div>
+      <?php
+    }else{
+      ?>
+      <div class="container">
+        <section class="content" style="min-height: 0px;">
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-ban"></i> ผิดพลาด!</h4>
+            ลงทะเบียนไม่สำเร็จ !
+          </div>
+        </section>
+      </div>
+      <?php
+    }
+  }
+  ?>
+<div class="register-box" style="margin: 0% auto;">
   <div class="register-logo">
-    <a href="index2.html"><b>Admin</b>LTE</a>
+    <a href="login.php"><b>RWI</b> - Book car</a>
   </div>
-
   <div class="register-box-body">
-    <p class="login-box-msg">Register a new membership</p>
+    <p class="login-box-msg">ลงทะเบียนเข้าใช้ระบบจัดการการจองรถ</p>
 
     <form action="adduser.php" method="post">
-      <div class="form-group has-feedback">
-        <input name="firstname" type="text" class="form-control" placeholder="First name" required>
+      <div class="radio">
+        <label>
+          <input type="radio" name="prefix" value="นาย"> นาย
+        </label>
+        <label>
+          <input type="radio" name="prefix" value="นาง"> นาง
+        </label>
+        <label>
+          <input type="radio" name="prefix" value="นางสาว"> นางสาว
+        </label>
       </div>
       <div class="form-group has-feedback">
-        <input name="lastname" type="text" class="form-control" placeholder="Last name" required>
+        <input name="firstname" type="text" class="form-control" placeholder="ชื่อ" required>
       </div>
       <div class="form-group has-feedback">
-        <input name="email" type="email" class="form-control" placeholder="Email" required>
+        <input name="lastname" type="text" class="form-control" placeholder="นามสกุล" required>
+      </div>
+      <div class="form-group has-feedback">
+        <input name="tel" type="text" class="form-control" placeholder="เบอร์โทรศัพท์" required>
+        <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input name="email" type="email" class="form-control" placeholder="อีเมล" required>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input name="username" type="text" class="form-control" placeholder="Username" required>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input name="password" type="password" class="form-control" placeholder="Password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input name="repassword" type="password" class="form-control" placeholder="Retype password" required>
+        <input name="repassword" type="password" class="form-control" placeholder="ยืนยัน password" required>
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="radio">
         <label>
-        <input type="radio" name="permit" value="1"> Admin
+        <input type="radio" name="permit" value="1"> ผู้อนุมัติ
         </label>
       </div>
-      <div class="radio iradio">
+      <div class="radio">
         <label>
-        <input type="radio" name="permit" value="2" checked> User
+        <input type="radio" name="permit" value="2" checked> ผู้ขอใช้รถ
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+        <input type="radio" name="permit" value="3"> พนักงานขับรถ
         </label>
       </div>
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> I agree to the <a href="#">terms</a>
+
             </label>
           </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">ลงทะเบียน</button>
         </div>
         <!-- /.col -->
       </div>
     </form>
 
-    <a href="login.php" class="text-center">I already have a membership</a>
+    <a href="login.php" class="text-center">เป็นสมาชิกอยู่แล้ว คลิ๊กเพื่อเข้าสู่ระบบ</a>
   </div>
   <!-- /.form-box -->
 </div>
