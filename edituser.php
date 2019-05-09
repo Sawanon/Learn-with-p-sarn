@@ -35,4 +35,5 @@ $query = $conn->query($strsql);
 if($query){
   echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
 }
+//edited
  ?>

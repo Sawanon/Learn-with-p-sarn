@@ -78,4 +78,5 @@ $query = $conn->query($strsql);
  </div>
 <?php
 include("footer.php");
+//edited
  ?>
