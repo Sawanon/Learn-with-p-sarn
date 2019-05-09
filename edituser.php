@@ -40,8 +40,13 @@ $query = $conn->query($strsql);
 if($query){
   echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
 }else{
-  echo "error<br>";
-  echo mysqli_error($conn);
+  $error = mysqli_error($conn);
+  $unique = strrpos($error,"u_email");
+  if($unique){
+    echo "<meta http-equiv='refresh' content='0;url=profile.php?error=2&email=".$email."'>";
+  }else{
+    echo $error;
+  }
 }
 //edited
  ?>
