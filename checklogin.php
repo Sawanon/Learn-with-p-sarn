@@ -11,7 +11,7 @@
     $strsql = "SELECT * FROM user WHERE username = '".md5($_POST['username'])."' AND password = '".md5($_POST['password'])."'";
     $query = $conn->query($strsql);
     while ($result = $query->fetch_array()) {
-      $_SESSION['check'] = $result['u_id'];
+      $_SESSION['u_id'] = $result['u_id'];
       $result['username'];
       $result['password'];
       $_SESSION['name'] = $result['u_fname'];
