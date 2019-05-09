@@ -3,7 +3,6 @@ ini_set("display",1);
 error_reporting(E_ALL);
 //เก็บ logfile
 ini_set("log_error",1);
-ini_set("error_log",dirname("img")."/error_log.txt");
 include("connect.php");
 $u_id = $_POST['u_id'];
 $fname = $_POST['fname'];
@@ -40,11 +39,14 @@ $query = $conn->query($strsql);
 if($query){
   echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
 }else{
+  //ตรวจสอบว่า error เกี่ยวกับการซ้ำกันของ email หรือป่าว
   $error = mysqli_error($conn);
+  //ค้นหาคำว่า u_email ใน error
   $unique = strrpos($error,"u_email");
   if($unique){
     echo "<meta http-equiv='refresh' content='0;url=profile.php?error=2&email=".$email."'>";
   }else{
+    //เผื่อมี error นอกเหนือจากนี้
     echo $error;
   }
 }
