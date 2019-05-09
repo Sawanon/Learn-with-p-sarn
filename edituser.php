@@ -1,4 +1,9 @@
 <?php
+ini_set("display",1);
+error_reporting(E_ALL);
+//เก็บ logfile
+ini_set("log_error",1);
+ini_set("error_log",dirname("img")."/error_log.txt");
 include("connect.php");
 $u_id = $_POST['u_id'];
 $fname = $_POST['fname'];
@@ -34,6 +39,9 @@ WHERE u_id='".$u_id."'";
 $query = $conn->query($strsql);
 if($query){
   echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
+}else{
+  echo "error<br>";
+  echo mysqli_error($conn);
 }
 //edited
  ?>
