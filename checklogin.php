@@ -21,7 +21,7 @@
     }
     if($_POST['listcookie']==1){
       $cookie_name = "cook";
-      $cookie_value = 1;
+      $cookie_value = $check;
       setcookie($cookie_name,$cookie_value,time()+(86400),"/");
       echo "Yes";
     }else{

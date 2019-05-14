@@ -1,7 +1,7 @@
 <?php
 include("header.php");
 include("left.php");
-if(!isset($_SESSION['u_id']) && !$_COOKIE['cook']==1){
+if(!isset($_SESSION['u_id']) && $_COOKIE['cook']==""){
   echo "<meta http-equiv='refresh' content='0;url=login.php'>";
 }
  ?>
@@ -18,17 +18,35 @@ if(!isset($_SESSION['u_id']) && !$_COOKIE['cook']==1){
        <h1>รายการจอง</h1>
      </section>
      <section class="content">
-           <div class="col-md-7">
-               <div class="box box-primary">
-                 <div class="box-body no-padding">
-                   <!-- THE CALENDAR -->
-                   <div id="calendar"></div>
-                 </div>
-                 <!-- /.box-body -->
-               </div>
-              <!-- /. box -->
-            </div>
+       <div class="row">
+         <div class="col-md-7">
+           <div class="box box-primary">
+             <div class="box-body no-padding">
+               <!-- THE CALENDAR -->
+               <div id="calendar"></div>
+             </div>
+             <!-- /.box-body -->
+           </div>
+           <!-- /. box -->
+         </div>
+       </div>
       </section>
+
+      <div id="calendarModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                    <h4 id="modalTitle" class="modal-title">header</h4>
+                </div>
+                <div id="modalBody" class="modal-body">asd</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+      </div>
+
   </div>
   <!-- /.content-wrapper -->
 <?php
@@ -77,6 +95,7 @@ include("footer.php");
        right : 'month,agendaWeek,agendaDay'
      },
      buttonText: {
+       id   : 'id',
        today: 'today',
        month: 'month',
        week : 'week',
@@ -85,6 +104,7 @@ include("footer.php");
      //Random default events
      events    : [
      {
+       id             : 'test01',
        title          : 'All Day Event',
        start          : new Date(y, m, 1),
        backgroundColor: '#f56954', //red
@@ -129,6 +149,23 @@ include("footer.php");
        borderColor    : '#3c8dbc' //Primary (light-blue)
      }
      ],
+     eventClick: function(calEvent, jsEvent, view) {
+
+       alert('Event id: ' + calEvent.id);
+       alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+       alert('View: ' + view.name);
+
+       // change the border color just for fun
+       $(this).css('border-color', 'red');
+
+       $('#modalTitle').html(event.title);
+            $('#modalBody').html(event.description);
+            $('#eventUrl').attr('href',event.url);
+            $('#calendarModal').modal();
+            $('#modalBody').text('some text');
+            $('')
+
+     },
      //editable  : true,
      droppable : true, // this allows things to be dropped onto the calendar !!!
      drop      : function (date, allDay) { // this function is called when something is dropped
@@ -157,6 +194,7 @@ include("footer.php");
 
      }
    })
+
 
    /* ADDING EVENTS */
    var currColor = '#3c8dbc' //Red by default
@@ -193,5 +231,6 @@ include("footer.php");
      //Remove event from text input
      $('#new-event').val('')
    })
+
  })
 </script>

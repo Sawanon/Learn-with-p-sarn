@@ -15,6 +15,12 @@
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -155,11 +161,13 @@
                   <?php echo $_SESSION['name']; ?> <br>
                   <?php
                   if($_SESSION['permit']==1){
-                    echo "ผู้อนุมัติ";
+                    echo $permit = "ผู้อนุมัติ";
                   }else if($_SESSION['permit']==2){
-                    echo "ผู้ขอใช้รถ";
+                    echo $permit = "ผู้ขอใช้รถ";
+                  }else if($_SESSION['permit']==3){
+                    echo $permit = "พนักงานขับรถ";
                   }else{
-                    echo "พนักงานขับรถ";
+                    echo $permit = "Admin";
                   }
                    ?>
                 </p>
