@@ -61,6 +61,7 @@ while ($result = $query->fetch_array()) {
         echo "ยี่ห้อ/รุ่น : ".$c_brand." ".$c_model;
         echo "<br />";
         echo "น้ำมัน : ".$c_fuel;
+        echo "test";
         ?>
       </div>
     </div>
