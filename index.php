@@ -1,4 +1,5 @@
 <?php
+include("connect.php");
 include("header.php");
 include("left.php");
 if(!isset($_SESSION['u_id']) && $_COOKIE['cook']==""){
@@ -37,9 +38,9 @@ if(!isset($_SESSION['u_id']) && $_COOKIE['cook']==""){
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                    <h4 id="modalTitle" class="modal-title">header</h4>
+                    <h4 id="modalTitle" class="modal-title"></h4>
                 </div>
-                <div id="modalBody" class="modal-body">asd</div>
+                <div id="modalBody" class="modal-body"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -103,68 +104,51 @@ include("footer.php");
      },
      //Random default events
      events    : [
-     {
-       id             : 'test01',
-       title          : 'All Day Event',
-       start          : new Date(y, m, 1),
-       backgroundColor: '#f56954', //red
-       borderColor    : '#f56954' //red
-     },
-     {
-       title          : 'Long Event',
-       start          : new Date(y, m, d - 5),
-       end            : new Date(y, m, d - 2),
-       backgroundColor: '#f39c12', //yellow
-       borderColor    : '#f39c12' //yellow
-     },
-     {
-       title          : 'Meeting',
-       start          : new Date(y, m, d, 10, 30),
-       allDay         : false,
-       backgroundColor: '#0073b7', //Blue
-       borderColor    : '#0073b7' //Blue
-     },
-     {
-       title          : 'Lunch',
-       start          : new Date(y, m, d, 12, 0),
-       end            : new Date(y, m, d, 14, 0),
-       allDay         : false,
-       backgroundColor: '#00c0ef', //Info (aqua)
-       borderColor    : '#00c0ef' //Info (aqua)
-     },
-     {
-       title          : 'Birthday Party',
-       start          : new Date(y, m, d + 1, 19, 0),
-       end            : new Date(y, m, d + 1, 22, 30),
-       allDay         : false,
-       backgroundColor: '#00a65a', //Success (green)
-       borderColor    : '#00a65a' //Success (green)
-     },
-     {
-       title          : 'Click for Google',
-       start          : new Date(y, m, 28),
-       end            : new Date(y, m, 29),
-       url            : 'http://google.com/',
-       backgroundColor: '#3c8dbc', //Primary (light-blue)
-       borderColor    : '#3c8dbc' //Primary (light-blue)
-     }
+       <?php
+       $strsql = "SELECT * FROM booking";
+       $query = $conn->query($strsql);
+       while ($result = $query->fetch_array()) {
+         $b_id = $result['b_id'];
+         $startdate = $result['b_startdatetime'];
+         $enddate = $result['b_enddatetime'];
+         $detail = $result['b_detail'];
+         $startyear = substr($startdate,0,4);
+         $startmonth = substr($startdate,5,2)-1;
+         $startday = substr($startdate,8,2);
+         $starthr = substr($startdate,11,2);
+         $startmin = substr($startdate,14,2);
+         $endyear = substr($enddate,0,4);
+         $endmonth = substr($enddate,5,2)-1;
+         $endday = substr($enddate,8,2);
+         $endhr = substr($enddate,11,2);
+         $endmin = substr($enddate,14,2);
+         echo "{";
+         echo "id : '".$b_id."',";
+         echo "title :  '".$detail."',";
+         echo "start : new Date(".$startyear.", ".$startmonth.", ".$startday.", ".$starthr.", ".$startmin."),";
+         echo "end : new Date(".$endyear.", ".$endmonth.", ".$endday.", ".$endhr.", ".$endmin.")";
+         echo "},";
+       }
+        ?>
+     /*{
+       id             : '1test',
+       title          : 'show1',
+       start          : new Date(2019, 4, 14, 09, 00),
+       end            : new Date(2019, 4, 15, 12, 00)
+     }*/
      ],
      eventClick: function(calEvent, jsEvent, view) {
 
-       alert('Event id: ' + calEvent.id);
+       /*alert('Event id: ' + calEvent.id);
        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-       alert('View: ' + view.name);
-
-       // change the border color just for fun
-       $(this).css('border-color', 'red');
+       alert('View: ' + view.name);*/
 
        $('#modalTitle').html(event.title);
             $('#modalBody').html(event.description);
             $('#eventUrl').attr('href',event.url);
             $('#calendarModal').modal();
-            $('#modalBody').text('some text');
-            $('')
 
+        showCustomer(calEvent.id);
      },
      //editable  : true,
      droppable : true, // this allows things to be dropped onto the calendar !!!
@@ -233,4 +217,19 @@ include("footer.php");
    })
 
  })
+ function showCustomer(str) {
+  var xhttp;
+  if (str == "") {
+    document.getElementById("modalBody").innerHTML = "";
+    return;
+  }
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("modalBody").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "testsql.php?a="+str, true);
+  xhttp.send();
+}
 </script>
