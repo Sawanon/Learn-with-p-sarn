@@ -229,7 +229,7 @@ include("footer.php");
       document.getElementById("modalBody").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "testsql.php?a="+str, true);
+  xhttp.open("GET", "selectdetail.php?a="+str, true);
   xhttp.send();
 }
 </script>

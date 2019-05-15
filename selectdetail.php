@@ -1,9 +1,15 @@
 <?php
 include("connect.php");
-$strsql = "SELECT * FROM booking WHERE b_id = '".$_GET['a']."'";
+$strsql = "SELECT *
+FROM booking
+WHERE b_id = '".$_GET['a']."'";
 $query = $conn->query($strsql);
 while ($result = $query->fetch_array()) {
-  echo $result['b_startdatetime'];
+  $b_id = $result['b_id'];
+  $start = $result['b_startdatetime'];
+  $end = $result['b_enddatetime'];
+  $detail = $result['b_detail'];
+
 }
  ?>
 <!DOCTYPE html>
@@ -40,7 +46,7 @@ while ($result = $query->fetch_array()) {
         <td class="header">วันเวลาที่เริ่มใช้</td><td>2019-05-14 15:30</td><td class="header">วันเวลาที่นำมาคืน</td><td>2019-05-15 16:00</td>
       </tr>
       <tr>
-        <td class="header">สถานที่ที่ไป</td><td colspan="3"> ระยอง </td>
+        <td class="header">รายละเอียด</td><td colspan="3"> ระยอง </td>
       </tr>
       <tr>
         <td class="header">ใช้สำหรับแผนก</td><td>ฝ่ายบริหารทั่วไป</td><td class="header">พนักงานขับรถ</td><td>นาย ขอขับ แปป</td>
