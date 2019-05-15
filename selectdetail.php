@@ -14,6 +14,16 @@ while ($result = $query->fetch_array()) {
   $driver .= " ".$result['u_lname'];
   $applicant = $result['applicant_id'];
   $c_id = $result['c_id'];
+  if ($result['b_status']=="A") {
+    $b_status = "อยู่ระหว่างการรออนุมัติ";
+    $color = "#f39c12";
+  }else if($result['b_status']=="B"){
+    $b_status = "อนุมัติแล้ว";
+    $color = "#0073b7";
+  }else {
+    $b_status = "ยกเลิก";
+    $color = "#f56954";
+  }
 }
 $strsql = "SELECT * FROM user WHERE u_id = '".$applicant."'";
 $query = $conn->query($strsql);
@@ -21,6 +31,7 @@ while ($result = $query->fetch_array()) {
   $applicant = $result['u_fname'];
   $applicant .= " ".$result['u_lname'];
   $tel = $result['u_tel'];
+  $department = $result['u_department'];
 }
 $strsql = "SELECT * FROM car WHERE c_id = '".$c_id."'";
 $query = $conn->query($strsql);
@@ -61,8 +72,10 @@ while ($result = $query->fetch_array()) {
         echo "ยี่ห้อ/รุ่น : ".$c_brand." ".$c_model;
         echo "<br />";
         echo "น้ำมัน : ".$c_fuel;
-        echo "test";
         ?>
+        <div style="padding: 4px; position: absolute;top: 0%;right: 5%;color: #ffffff; background-color: <?php echo $color; ?>;">
+          <?php echo $b_status; ?>
+        </div>
       </div>
     </div>
     <table id="table" class="table table-bordered table-hover">
@@ -76,7 +89,7 @@ while ($result = $query->fetch_array()) {
         <td class="header">รายละเอียด</td><td colspan="3"><?php echo $detail; ?></td>
       </tr>
       <tr>
-        <td class="header">ใช้สำหรับแผนก</td><td> - </td><td class="header">พนักงานขับรถ</td><td><?php echo $driver; ?></td>
+        <td class="header">ใช้สำหรับแผนก</td><td><?php echo $department; ?></td><td class="header">พนักงานขับรถ</td><td><?php echo $driver; ?></td>
       </tr>
       <tr>
         <td class="header">ผู้ขอใช้รถ</td><td><?php echo $applicant; ?></td><td class="header">โทรศัพท์</td><td><?php echo $tel; ?></td>

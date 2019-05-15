@@ -127,6 +127,13 @@ include("footer.php");
          echo "title :  '".$detail."',";
          echo "start : new Date(".$startyear.", ".$startmonth.", ".$startday.", ".$starthr.", ".$startmin."),";
          echo "end : new Date(".$endyear.", ".$endmonth.", ".$endday.", ".$endhr.", ".$endmin.")";
+         if ($result['b_status']=="A") {
+           echo ",backgroundColor : '#f39c12',";
+           echo "borderColor : '#f39c12' ";
+         }else if($result['b_status']=="C"){
+           echo ",backgroundColor : '#f56954',";
+           echo "borderColor : '#f56954' ";
+         }
          echo "},";
        }
         ?>
