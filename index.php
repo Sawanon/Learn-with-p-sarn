@@ -145,7 +145,7 @@ include("footer.php");
      }*/
      ],
      eventClick: function(calEvent, jsEvent, view) {
-
+       //เผื่ออยาก alert อะไรก็ตามนี้งับ
        /*alert('Event id: ' + calEvent.id);
        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
        alert('View: ' + view.name);*/
@@ -154,8 +154,8 @@ include("footer.php");
             $('#modalBody').html(event.description);
             $('#eventUrl').attr('href',event.url);
             $('#calendarModal').modal();
-
-        showCustomer(calEvent.id);
+      //Ajax เปลี่ยนค่าใน modal ตาม id ที่ return ค่ามา
+        showDetail(calEvent.id);
      },
      //editable  : true,
      droppable : true, // this allows things to be dropped onto the calendar !!!
@@ -224,7 +224,7 @@ include("footer.php");
    })
 
  })
- function showCustomer(str) {
+ function showDetail(str) {
   var xhttp;
   if (str == "") {
     document.getElementById("modalBody").innerHTML = "";
