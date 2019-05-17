@@ -3,6 +3,7 @@
 <head>
   <?php
   session_start();
+  include("connect.php");
    ?>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,28 +64,41 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+          <?php
+          $list_req = 0;
+          $strsql = "SELECT *
+          FROM booking,user
+          WHERE b_status = 'A'
+          AND applicant_id = user.u_id";
+          $query = $conn->query($strsql);
+          while ($result = $query->fetch_array()) {
+            $h_applicant[] = $result['u_fname'];
+            $h_detail[] = $result['b_detail'];
+            $h_department[] = $result['u_department'];
+            $list_req++;
+          }
+           ?>
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning"><?php echo $list_req; ?></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">มีรายการขออนุมัติ <?php echo $list_req; ?> รายการ</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
+                    <?php for ($i=0; $i < $list_req ; $i++) {
+                      echo "<a href='#'>";
+                      echo "<h4>";
+                      echo $h_applicant[$i]." (".$h_department[$i].")";
+                      echo "</h4>";
+                      echo "<p>".$h_detail[$i]."</p>";
+                      echo "</a>";
+                    }
+                    ?>
                   </li>
                   <!-- end message -->
                 </ul>
@@ -166,7 +180,7 @@
                     echo $permit = "ผู้ขอใช้รถ";
                   }else if($_SESSION['permit']==3){
                     echo $permit = "พนักงานขับรถ";
-                  }else{
+                  }else if($_SESSION['permit']==4){
                     echo $permit = "Admin";
                   }
                    ?>

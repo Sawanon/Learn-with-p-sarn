@@ -1,7 +1,7 @@
 <?php
-include("connect.php");
 include("header.php");
 include("left.php");
+$_SESSION['menu'] = 3;
  ?>
 
 <div class="content-wrapper">

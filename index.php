@@ -1,5 +1,4 @@
 <?php
-include("connect.php");
 include("header.php");
 include("left.php");
 if(!isset($_SESSION['u_id']) && $_COOKIE['cook']==""){
@@ -14,6 +13,7 @@ if(!isset($_SESSION['u_id']) && $_COOKIE['cook']==""){
   <div class="content-wrapper">
     <?php
     echo $_COOKIE['cook'];
+    $_SESSION['menu'] = 1;
      ?>
      <section class="content-header">
        <h1>รายการจอง</h1>
@@ -236,7 +236,7 @@ include("footer.php");
       document.getElementById("modalBody").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "selectdetail.php?a="+str, true);
+  xhttp.open("GET", "showdetail.php?a="+str, true);
   xhttp.send();
 }
 </script>

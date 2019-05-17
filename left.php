@@ -29,7 +29,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
+        <li class="treeview active">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>ระบบจองรถ</span>
             <span class="pull-right-container">
@@ -37,8 +37,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="booking.php"><i class="fa fa-circle-o"></i>ทำรายการจอง</a></li>
-            <li><a href="manageuser.php"><i class="fa fa-circle-o"></i>จัดการผู้ใช้</a></li>
+            <li id="m1"><a href="index.php"><i class="fa fa-circle-o"></i>หน้าแรก</a></li>
+            <li id="m2"><a href="booking.php"><i class="fa fa-circle-o"></i>ทำรายการจอง</a></li>
+            <?php if($_SESSION['permit']==1){ ?>
+              <li id="m3"><a href="manageuser.php"><i class="fa fa-circle-o"></i>จัดการผู้ใช้</a></li>
+            <?php } ?>
           </ul>
         </li>
         <li class="header">LABELS</li>

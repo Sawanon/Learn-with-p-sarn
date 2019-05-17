@@ -79,6 +79,7 @@ $(document).ready(function () {
           $('#fullCalModal').modal();
       }
   });
+  $('#m<?php echo $_SESSION['menu']; ?>').addClass('active');
 
 })
 

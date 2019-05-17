@@ -1,6 +1,7 @@
 <?php
 include("header.php");
 include("left.php");
+$_SESSION['menu'] = 2;
  ?>
  <div class="content-wrapper">
    <section class="content-header">
