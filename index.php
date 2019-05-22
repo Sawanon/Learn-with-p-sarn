@@ -1,9 +1,6 @@
 <?php
 include("header.php");
 include("left.php");
-if(!isset($_SESSION['u_id']) && $_COOKIE['cook']==""){
-  echo "<meta http-equiv='refresh' content='0;url=login.php'>";
-}
  ?>
 
 

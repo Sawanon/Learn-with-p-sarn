@@ -83,7 +83,7 @@
         <input name="lastname" type="text" class="form-control" placeholder="นามสกุล" required>
       </div>
       <div class="form-group has-feedback">
-        <input name="tel" type="text" class="form-control" placeholder="เบอร์โทรศัพท์" required>
+        <input name="tel" type="text" class="form-control" placeholder="เบอร์โทรศัพท์" required maxlength="10">
         <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

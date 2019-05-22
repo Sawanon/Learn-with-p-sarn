@@ -39,7 +39,7 @@
           <ul class="treeview-menu">
             <li id="m1"><a href="index.php"><i class="fa fa-circle-o"></i>หน้าแรก</a></li>
             <li id="m2"><a href="booking.php"><i class="fa fa-circle-o"></i>ทำรายการจอง</a></li>
-            <?php if($_SESSION['permit']==1){ ?>
+            <?php if($_SESSION['permit']==4){ ?>
               <li id="m3"><a href="manageuser.php"><i class="fa fa-circle-o"></i>จัดการผู้ใช้</a></li>
             <?php } ?>
           </ul>

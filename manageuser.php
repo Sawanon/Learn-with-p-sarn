@@ -15,7 +15,7 @@ $_SESSION['menu'] = 3;
           รายการผู้ใช้
         </div>
         <div class="box-body">
-          <table id="table" class="table table-bordered table-hover">
+          <table id="table" class="table table-bordered table-hover"> <!--class="table table-bordered table-hover"-->
             <thead>
             <tr>
               <th>ID</th>
@@ -31,10 +31,13 @@ $_SESSION['menu'] = 3;
             </tr>
             </thead>
             <tbody>
+              <!--<button type="button" name="button" value="2" onclick="deleteUser(this.value)">gogo</button>-->
+
             <?php
             $strsql = "SELECT u.u_id,u.u_prefix,u.u_fname,u.u_lname,u.u_tel,u.u_email,u.u_address,u.u_permit,u.u_signature
             FROM user u";
             $query = $conn->query($strsql);
+            $count = 0;
             while ($result = $query->fetch_array()) {
               echo "<tr>";
               echo "<td>".$result['u_id']."</td>";
@@ -44,11 +47,17 @@ $_SESSION['menu'] = 3;
               echo "<td>".$result['u_tel']."</td>";
               echo "<td>".$result['u_email']."</td>";
               echo "<td>".$result['u_address']."</td>";
-              echo "<td>".$result['u_permit']."</td>";
+              if($result['u_permit']==1){$permit = "ผู้อนุมัติ";}
+              else if($result['u_permit']==2){$permit = "ผู้ขอใข้รถ";}
+              else if($result['u_permit']==3){$permit = "พนักงานขับรถ";}
+              else if($result['u_permit']==4){$permit = "Admin";}
+              echo "<td>".$permit."</td>";
               echo "<td>".$result['u_signature']."</td>";
               echo "<td><button class='btn btn-success'><i class='fa fa-edit'></i></button>
-              <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#modal-danger'><i class='fa fa-remove'></i></button></td>";
+              <button value='".$result['u_id']."' id='d".$result['u_id']."' type='button' class='btn btn-danger' data-toggle='modal' data-target='#modal-danger'><i class='fa fa-remove'></i></button></td>";
               echo "</tr>";
+              $uid[] = $result['u_id'];
+              $count++;
             }
              ?>
             </tbody>
@@ -57,6 +66,7 @@ $_SESSION['menu'] = 3;
       </div>
     </div>
     <!------------------------------>
+    <form action="manageusersql.php" method="post">
     <div class="modal modal-danger fade" id="modal-danger">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -70,13 +80,15 @@ $_SESSION['menu'] = 3;
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">ยกเลิก</button>
-            <button type="button" class="btn btn-outline">ตกลง</button>
+            <input id="testval" type="text" name="uid" value="">
+            <button type="submit" class="btn btn-outline">ตกลง</button>
           </div>
         </div>
         <!-- /.modal-content -->
       </div>
       <!-- /.modal-dialog -->
     </div>
+    </form>
     <!-- /.modal -->
   </section>
 </div>
@@ -85,6 +97,15 @@ $_SESSION['menu'] = 3;
 include("footer.php");
  ?>
  <script>
+ $(document).ready(function() {
+   <?php
+   for ($i=0; $i <= $count ; $i++) {
+     echo "$('#d".$uid[$i]."').click(function() {";
+     echo "$('#testval').val($('#d".$uid[$i]."').val());";
+     echo "});";
+   }
+    ?>
+ });
    $(function () {
      $('#example1').DataTable()
      $('table').DataTable({
