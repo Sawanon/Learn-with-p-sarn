@@ -80,7 +80,7 @@ $_SESSION['menu'] = 3;
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">ยกเลิก</button>
-            <input id="testval" type="text" name="uid" value="">
+            <input id="testval" type="hidden" name="uid" value="">
             <button type="submit" class="btn btn-outline">ตกลง</button>
           </div>
         </div>

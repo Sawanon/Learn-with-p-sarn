@@ -2,6 +2,9 @@
 include("connect.php");
 include("header.php");
 include("left.php");
+if($_POST){
+$_SESSION['date'] = $_POST['date'];
+}
 $strsql = "SELECT t.tc_id,t.tc_name FROM type_car t";
 $query = $conn->query($strsql);
  ?>
@@ -23,6 +26,7 @@ $query = $conn->query($strsql);
           echo "<br>";
         }
          ?>
+         <input type="text" name="" value="<?php echo $_SESSION['date']; ?>">
       </div>
     </div>
   </section>

@@ -37,7 +37,6 @@
         <button type="button" class="close" name="button" data-dismiss="alert" aria-hidden="true">x</button>
         <h5><i class="icon fa fa-ban"></i>Username หรือ Password ของคุณไม่ถูกต้อง</h5>
       </div>
-      <meta http-equiv="refresh" content="4;url=login.php">
       <?php
     }
   }

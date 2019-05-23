@@ -69,9 +69,18 @@
         <ul class="nav navbar-nav">
           <?php
           $list_req = 0;
+          if($_SESSION['permit']==1){
+            $strsql = "SELECT *
+            FROM booking,user
+            WHERE user.u_department = '".$_SESSION['department']."'
+            AND b_status ='A'
+            AND applicant_id = user.u_id";
+          }
           $strsql = "SELECT *
           FROM booking,user
-          WHERE b_status = 'A'
+          WHERE u_id = '".$_SESSION['u_id']."'
+          AND user.u_department = '".$_SESSION['department']."'
+          AND b_status = 'A'
           AND applicant_id = user.u_id";
           $query = $conn->query($strsql);
           while ($result = $query->fetch_array()) {

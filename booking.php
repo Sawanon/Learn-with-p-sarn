@@ -14,13 +14,33 @@ $_SESSION['menu'] = 2;
          <h3>รายละเอียดการจองของคุณ</h3>
        </div>
          <div class="box-body">
-           <div class="form-group">
-             <label>เลือกช่วงวันที่ต้องการใช้รถ : </label>
-             <div class="input-group">
-               <div class="input-group-addon">
-                 <i class="fa fa-calendar"></i>
+           <div class="row" style="margin-left: 0px;">
+             <div class="col-xs-4">
+               <div class="form-group">
+                 <label>เลือกช่วงวันที่ต้องการใช้รถ : </label>
+                     <div class="input-group">
+                       <div class="input-group-addon">
+                         <i class="fa fa-calendar"></i>
+                       </div>
+                       <input class="form-control pull-right" id="reservation" type="text" name="date" value="">
+                     </div>
                </div>
-               <input class="form-control pull-right" id="reservation" type="text" name="date" value="">
+             </div>
+             <div class="col-xs-4">
+               <div class="form-group">
+                 <div class="radio">
+                   <label>
+                     <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                     รถเก๊ง
+                   </label>
+                 </div>
+                 <div class="radio">
+                   <label>
+                     <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                     รถกระบะ
+                   </label>
+                 </div>
+               </div>
              </div>
            </div>
          </div>
