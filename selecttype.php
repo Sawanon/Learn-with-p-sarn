@@ -26,7 +26,10 @@ $query = $conn->query($strsql);
           echo "<br>";
         }
          ?>
-         <input type="text" name="" value="<?php echo $_SESSION['date']; ?>">
+         <?php
+         echo $_SESSION['date']; 
+         ?>
+         <input type="text" name="" value="">
       </div>
     </div>
   </section>

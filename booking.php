@@ -22,7 +22,7 @@ $_SESSION['menu'] = 2;
                        <div class="input-group-addon">
                          <i class="fa fa-calendar"></i>
                        </div>
-                       <input class="form-control pull-right" id="reservation" type="text" name="date" value="">
+                       <input type="text" class="form-control pull-right" id="reservationtime" name="date">
                      </div>
                </div>
              </div>
@@ -65,6 +65,16 @@ $('#reservation').daterangepicker({
             format: 'DD/MM/YYYY'
         }
     })
+//Date range picker with time picker
+$('#reservationtime').daterangepicker({
+   timePicker: true,
+   autoApply: true,
+   timePickerIncrement: 30,
+   timePicker24Hour: true,
+   locale: {
+       format: 'DD-MM-YYYY HH:mm'
+   }
+ })
 //Date picker
 $('#datepicker').datepicker({
   autoclose: true
