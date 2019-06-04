@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2019 at 01:39 AM
+-- Generation Time: Jun 04, 2019 at 10:30 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `booking` (
   `b_id` int(11) NOT NULL,
   `applicant_id` int(11) NOT NULL,
+  `tc_id` int(11) NOT NULL,
   `c_id` int(11) NOT NULL,
   `b_startdatetime` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `b_enddatetime` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
@@ -42,9 +43,9 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`b_id`, `applicant_id`, `c_id`, `b_startdatetime`, `b_enddatetime`, `b_detail`, `driver_id`, `approvers_id`, `b_status`) VALUES
-(1, 2, 1, '2019-05-14 09:00', '2019-05-15 12:00', 'ยืมไปขับเล่น', 3, 1, 'A'),
-(2, 1, 2, '2019-05-20 08:30', '2019-05-25 11:30', 'ลองจองเก็บรายละเอียด', 3, 1, 'A');
+INSERT INTO `booking` (`b_id`, `applicant_id`, `tc_id`, `c_id`, `b_startdatetime`, `b_enddatetime`, `b_detail`, `driver_id`, `approvers_id`, `b_status`) VALUES
+(1, 2, 1, 1, '2019-06-05 09:00', '2019-06-06 12:00', 'ยืมไปขับเล่น', 3, 1, 'A'),
+(2, 1, 1, 2, '2019-06-20 08:30', '2019-06-25 11:30', 'ลองจองเก็บรายละเอียด', 3, 1, 'A');
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,8 @@ ALTER TABLE `booking`
   ADD KEY `fk_applicant_id` (`applicant_id`),
   ADD KEY `fk_driver_id` (`driver_id`),
   ADD KEY `fk_approvers_id` (`approvers_id`),
-  ADD KEY `fk_car_id` (`c_id`);
+  ADD KEY `fk_car_id` (`c_id`),
+  ADD KEY `tc_id` (`tc_id`);
 
 --
 -- Indexes for table `car`
@@ -202,7 +204,8 @@ ALTER TABLE `booking`
   ADD CONSTRAINT `fk_applicant_id` FOREIGN KEY (`applicant_id`) REFERENCES `user` (`u_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_approvers_id` FOREIGN KEY (`approvers_id`) REFERENCES `user` (`u_id`),
   ADD CONSTRAINT `fk_car_id` FOREIGN KEY (`c_id`) REFERENCES `car` (`c_id`),
-  ADD CONSTRAINT `fk_driver_id` FOREIGN KEY (`driver_id`) REFERENCES `user` (`u_id`);
+  ADD CONSTRAINT `fk_driver_id` FOREIGN KEY (`driver_id`) REFERENCES `user` (`u_id`),
+  ADD CONSTRAINT `fk_typecar_id` FOREIGN KEY (`tc_id`) REFERENCES `type_car` (`tc_id`);
 
 --
 -- Constraints for table `car`

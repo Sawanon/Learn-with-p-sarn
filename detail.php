@@ -10,20 +10,30 @@ $_SESSION['tc_id'] = $_POST['tc_id'];
      <h1>รายละเอียดในการจอง</h1>
    </section>
    <section class="content">
-     <div class="row">
-       <div class="col-xs-12">
-         <a href="selecttype.php">
-           <button type="button" name="button" class="btn btn-app">
-             <span class="glyphicon glyphicon-arrow-left"></span>
-             Back
-           </button>
-         </a>
+     <div class="box box-primary">
+       <div class="box-header with-border">
+         <div class="row">
+           <div class="col-xs-12">
+             <a href="selecttype.php">
+               <button type="button" name="button" class="btn btn-app">
+                 <span class="glyphicon glyphicon-arrow-left"></span>
+                 ย้อนกลับ
+               </button>
+             </a>
+           </div>
+         </div>
+         <h3>รายละเอียดในการจอง</h3>
        </div>
-       <?php
-       echo $_POST['tc_id'];
-       echo "<br>";
-       echo $_SESSION['date'];
-       ?>
+       <div class="box-body">
+         <label>กรอกรายละเอียดในการจองของคุณ</label>
+         <textarea name="name" class="form-control" rows="5" cols="80"></textarea>
+         <?php
+         echo $_POST['tc_id'];
+         echo "<br>";
+         echo $_SESSION['date'];
+         ?>
+         <button class="btn btn-primary" type="submit" name="button">ต่อไป</button>
+       </div>
      </div>
    </section>
  </div>
