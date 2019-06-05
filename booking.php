@@ -5,7 +5,6 @@ $_SESSION['menu'] = 2;
  ?>
  <div class="content-wrapper">
    <section class="content-header">
-     การจอง
    </section>
    <section class="content">
      <div class="box box-primary">
@@ -29,7 +28,7 @@ $_SESSION['menu'] = 2;
            </div>
          </div>
          <div class="box-footer">
-           <button class="btn btn-primary" type="submit" name="button">ยืนยัน</button>
+           <button class="btn btn-primary" type="submit" name="button">ต่อไป</button>
          </div>
        </form>
      </div>

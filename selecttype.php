@@ -10,21 +10,20 @@ $query = $conn->query($strsql);
  ?>
 <div class="content-wrapper">
   <section class="content-header">
-    <h1>เลือกประเภทรถที่ต้องการ</h1>
   </section>
   <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="booking.php">
+          <button type="button" name="button" class="btn btn-app">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            ย้อนกลับ
+          </button>
+        </a>
+      </div>
+    </div>
     <div class="box box-primary">
       <div class="box-header with-border">
-        <div class="row">
-          <div class="col-xs-12">
-            <a href="booking.php">
-              <button type="button" name="button" class="btn btn-app">
-                <span class="glyphicon glyphicon-arrow-left"></span>
-                ย้อนกลับ
-              </button>
-            </a>
-          </div>
-        </div>
         <h3>ประเภทรถ</h3>
       </div>
           <div class="box-body">
