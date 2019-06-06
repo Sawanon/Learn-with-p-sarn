@@ -130,6 +130,9 @@ include("footer.php");
          }else if($result['b_status']=="C"){
            echo ",backgroundColor : '#f56954',";
            echo "borderColor : '#f56954' ";
+         }else if($result['b_status']=="D"){
+           echo ",backgroundColor : '#3b9e1d',";
+           echo "borderColor : '#3b9e1d' ";
          }
          echo "},";
        }

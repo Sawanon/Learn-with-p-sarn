@@ -77,13 +77,21 @@
             WHERE user.u_department = '".$_SESSION['department']."'
             AND b_status ='A'
             AND applicant_id = user.u_id";
+          }else if($_SESSION['permit']==2){
+            $strsql = "SELECT *
+            FROM booking,user
+            WHERE u_id = '".$_SESSION['u_id']."'
+            AND user.u_department = '".$_SESSION['department']."'
+            AND b_status = 'A'
+            AND applicant_id = user.u_id";
+          }else{
+            $strsql = "SELECT *
+            FROM booking,user
+            WHERE u_id = '".$_SESSION['u_id']."'
+            AND user.u_department = '".$_SESSION['department']."'
+            AND b_status = 'A'
+            AND applicant_id = user.u_id";
           }
-          $strsql = "SELECT *
-          FROM booking,user
-          WHERE u_id = '".$_SESSION['u_id']."'
-          AND user.u_department = '".$_SESSION['department']."'
-          AND b_status = 'A'
-          AND applicant_id = user.u_id";
           $query = $conn->query($strsql);
           while ($result = $query->fetch_array()) {
             $h_applicant[] = $result['u_fname'];
