@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2019 at 10:30 AM
+-- Generation Time: Jun 07, 2019 at 10:06 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -30,12 +30,12 @@ CREATE TABLE `booking` (
   `b_id` int(11) NOT NULL,
   `applicant_id` int(11) NOT NULL,
   `tc_id` int(11) NOT NULL,
-  `c_id` int(11) NOT NULL,
+  `c_id` int(11) DEFAULT NULL,
   `b_startdatetime` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `b_enddatetime` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `b_detail` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `driver_id` int(11) NOT NULL,
-  `approvers_id` int(11) NOT NULL,
+  `driver_id` int(11) DEFAULT NULL,
+  `approvers_id` int(11) DEFAULT NULL,
   `b_status` char(1) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -44,8 +44,16 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`b_id`, `applicant_id`, `tc_id`, `c_id`, `b_startdatetime`, `b_enddatetime`, `b_detail`, `driver_id`, `approvers_id`, `b_status`) VALUES
-(1, 2, 1, 1, '2019-06-05 09:00', '2019-06-06 12:00', 'ยืมไปขับเล่น', 3, 1, 'A'),
-(2, 1, 1, 2, '2019-06-20 08:30', '2019-06-25 11:30', 'ลองจองเก็บรายละเอียด', 3, 1, 'A');
+(1, 1, 1, 1, '2019-06-26 09:00', '2019-06-27 12:00', 'ผ่านแล้วครับโผมม', 3, 1, 'D'),
+(2, 1, 1, NULL, '2019-06-12 08:30', '2019-06-13 11:30', 'อนุมัติแล้วจ้า', NULL, 1, 'B'),
+(3, 1, 2, NULL, '2019-06-05 00:00', '2019-06-06 23:00', 'การจองขั้นแรก', NULL, NULL, 'A'),
+(4, 1, 1, NULL, '2019-06-19 08:00', '2019-06-20 17:00', 'ยกเลิกการจองไม่จองงง', NULL, NULL, 'C'),
+(5, 1, 2, NULL, '2019-06-05 00:00', '2019-06-06 23:00', 'ทอลองเหลืองครั้งที่2', NULL, NULL, 'A'),
+(6, 1, 1, NULL, '2019-06-05 00:00', '2019-06-06 23:00', 'ทดลองเหลืองครั้งที่3', NULL, NULL, 'A'),
+(7, 1, 2, NULL, '2019-06-12 00:00', '2019-06-13 23:00', 'ทดลองฟ้าครั้งที่2', NULL, NULL, 'B'),
+(8, 1, 2, NULL, '2019-06-12 04:00', '2019-06-13 11:00', 'ทดลองฟ้าครั้งที่3', NULL, NULL, 'B'),
+(10, 1, 1, NULL, '2019-06-19 08:00', '2019-06-20 11:00', 'ทดลองแดง2', NULL, NULL, 'C'),
+(11, 1, 1, NULL, '2019-06-19 00:00', '2019-06-20 23:00', 'ทดลองแดง3', NULL, NULL, 'C');
 
 -- --------------------------------------------------------
 
@@ -74,8 +82,8 @@ CREATE TABLE `car` (
 --
 
 INSERT INTO `car` (`c_id`, `c_licenseplate`, `c_model`, `c_brand`, `tc_id`, `c_gear`, `c_fuel`, `c_color`, `c_purchase_date`, `c_Act_date`, `c_Act_exp`, `c_insurance_date`, `c_insurance_exp`) VALUES
-(1, '9กค 9535', 'rx-8', 'Mazda', 2, 'Auto', 'diesel', 'white', '2018-11-25', '2018-11-26', '2019-11-26', '2018-11-27', '2019-11-27'),
-(2, 'ฉว 3939', 'Skyline GTR R34', 'Nissan', 2, 'manual', 'bensin', 'blue', '2019-02-05', '2019-02-06', '2020-02-06', '2019-02-07', '2020-02-07');
+(1, '9กค 9535 กรุงเทพมหานคร', 'rx-8', 'Mazda', 2, 'Auto', 'diesel', 'white', '2018-11-25', '2018-11-26', '2019-11-26', '2018-11-27', '2019-11-27'),
+(2, 'กล 28 กรุงเทพมหานคร', 'Skyline GTR R34', 'Nissan', 2, 'manual', 'bensin', 'blue', '2019-02-05', '2019-02-06', '2020-02-06', '2019-02-07', '2020-02-07');
 
 -- --------------------------------------------------------
 
@@ -141,10 +149,10 @@ INSERT INTO `user` (`u_id`, `u_prefix`, `u_fname`, `u_lname`, `u_tel`, `u_email`
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`b_id`),
   ADD KEY `fk_applicant_id` (`applicant_id`),
-  ADD KEY `fk_driver_id` (`driver_id`),
-  ADD KEY `fk_approvers_id` (`approvers_id`),
+  ADD KEY `tc_id` (`tc_id`),
   ADD KEY `fk_car_id` (`c_id`),
-  ADD KEY `tc_id` (`tc_id`);
+  ADD KEY `fk_driver_id` (`driver_id`),
+  ADD KEY `fk_approvers_id` (`approvers_id`);
 
 --
 -- Indexes for table `car`
@@ -177,7 +185,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `car`
 --

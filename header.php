@@ -103,7 +103,7 @@
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
+              <i class="fa fa-refresh-o"></i>
               <span class="label label-warning"><?php echo $list_req; ?></span>
             </a>
             <ul class="dropdown-menu">
@@ -114,6 +114,9 @@
                   <li><!-- start message -->
                     <?php for ($i=0; $i < $list_req ; $i++) {
                       echo "<a href='#'>";
+                      echo "<div class='pull-left'>";
+                      echo "<span class='glyphicon glyphicon-exclamation-sign'></span>";
+                      echo "</div>";
                       echo "<h4>";
                       echo $h_applicant[$i]." (".$h_department[$i].")";
                       echo "</h4>";
@@ -138,7 +141,6 @@
               <!-- User image -->
               <li class="user-header">
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                 <p>
                   <?php echo $_SESSION['name']; ?> <br>
                   <?php
