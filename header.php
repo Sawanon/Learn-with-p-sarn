@@ -72,42 +72,65 @@
           <?php
           $list_req = 0;
           if($_SESSION['permit']==1){
-            $strsql = "SELECT *
+            //แสดงผู้ขอ
+            $request = "SELECT *
             FROM booking,user
             WHERE user.u_department = '".$_SESSION['department']."'
             AND b_status ='A'
-            AND applicant_id = user.u_id";
+            AND applicant_id = user.u_id
+            ORDER BY b_id DESC";
+            //แสดงที่อนุมัติแล้ว
+            $approved = "SELECT *
+            FROM booking,user
+            WHERE user.u_department = '".$_SESSION['department']."'
+            AND b_status ='B'
+            AND applicant_id = user.u_id
+            ORDER BY b_id DESC";
+            //แสดงรายการที่ดำการเสร็จสิ้นแล้ว
+            $success = "SELECT *
+            FROM booking,user
+            WHERE user.u_department = '".$_SESSION['department']."'
+            AND b_status ='D'
+            AND applicant_id = user.u_id
+            ORDER BY b_id DESC";
+            //แสดงรายการที่ถูกยกเลิก
+            $cancel = "SELECT *
+            FROM booking,user
+            WHERE user.u_department = '".$_SESSION['department']."'
+            AND b_status ='C'
+            AND applicant_id = user.u_id
+            ORDER BY b_id DESC";
           }else if($_SESSION['permit']==2){
-            $strsql = "SELECT *
+            $request = "SELECT *
             FROM booking,user
             WHERE u_id = '".$_SESSION['u_id']."'
             AND user.u_department = '".$_SESSION['department']."'
             AND b_status = 'A'
             AND applicant_id = user.u_id";
           }else{
-            $strsql = "SELECT *
+            $request = "SELECT *
             FROM booking,user
             WHERE u_id = '".$_SESSION['u_id']."'
             AND user.u_department = '".$_SESSION['department']."'
             AND b_status = 'A'
             AND applicant_id = user.u_id";
           }
-          $query = $conn->query($strsql);
+          $query = $conn->query($request);
           while ($result = $query->fetch_array()) {
-            $h_applicant[] = $result['u_fname'];
-            $h_detail[] = $result['b_detail'];
-            $h_department[] = $result['u_department'];
+            $req_applicant[] = $result['u_fname'];
+            $req_detail[] = $result['b_detail'];
+            $req_department[] = $result['u_department'];
             $list_req++;
           }
            ?>
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-refresh-o"></i>
-              <span class="label label-warning"><?php echo $list_req; ?></span>
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-danger"><?php echo $list_req; ?></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">มีรายการขออนุมัติ <?php echo $list_req; ?> รายการ</li>
+              <li class="header">ขออนุมัติ <?php echo $list_req; ?> รายการ</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
@@ -115,12 +138,12 @@
                     <?php for ($i=0; $i < $list_req ; $i++) {
                       echo "<a href='#'>";
                       echo "<div class='pull-left'>";
-                      echo "<span class='glyphicon glyphicon-exclamation-sign'></span>";
+                      echo "<span class='glyphicon glyphicon-exclamation-sign' style='font-size: 1.5em; color: #dd4b39;'></span>";
                       echo "</div>";
                       echo "<h4>";
-                      echo $h_applicant[$i]." (".$h_department[$i].")";
+                      echo $req_applicant[$i]." <b>(".$req_department[$i].")</b>";
                       echo "</h4>";
-                      echo "<p>".$h_detail[$i]."</p>";
+                      echo "<p>".$req_detail[$i]."</p>";
                       echo "</a>";
                     }
                     ?>
@@ -128,9 +151,94 @@
                   <!-- end message -->
                 </ul>
               </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
+              <li class="footer"><a href="#">ดูรายการที่ขออนุมัติทั้งหมด</a></li>
             </ul>
           </li>
+
+          <?php
+          $query = $conn->query($approved);
+          while ($result = $query->fetch_array()) {
+            $app_applicant[] = $result['u_fname'];
+            $app_detail[] = $result['b_detail'];
+            $app_department[] = $result['u_department'];
+            $list_app++;
+          }
+           ?>
+
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-refresh"></i>
+              <span class="label label-warning"><?php echo $list_app; ?></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">อนุมัติแล้ว <?php echo $list_app; ?> รายการ</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li><!-- start message -->
+                    <?php
+                    for ($i=0; $i < $list_app ; $i++) {
+                      echo "<a href='#'>";
+                      echo "<div class='pull-left'>";
+                      echo "<span class='glyphicon glyphicon-exclamation-sign' style='font-size: 1.5em; color: #f39c12;'></span>";
+                      echo "</div>";
+                      echo "<h4>";
+                      echo $app_applicant[$i]." <b>(".$app_department[$i].")</b>";
+                      echo "</h4>";
+                      echo "<p>".$app_detail[$i]."</p>";
+                      echo "</a>";
+                    }
+                     ?>
+                  </li>
+                  <!-- end message -->
+                </ul>
+              </li>
+              <li class="footer"><a href="#">ดูรายการที่อนุมัติแล้วทั้งหมด</a></li>
+            </ul>
+          </li>
+
+          <?php
+          $query = $conn->query($success);
+          while ($result = $query->fetch_array()) {
+            $suc_applicant[] = $result['u_fname'];
+            $suc_detail[] = $result['b_detail'];
+            $suc_department[] = $result['u_department'];
+            $list_suc++;
+          }
+           ?>
+
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-check"></i>
+              <span class="label label-success"><?php echo $list_suc; ?></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">ดำเนินการเสร็จสิ้นแล้ว <?php echo $list_suc; ?> รายการ</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li><!-- start message -->
+                    <?php
+                    for ($i=0; $i < $list_suc; $i++) {
+                      echo "<a href='#'>";
+                      echo "<div class='pull-left'>";
+                      echo "<span class='fa fa-check' style='font-size: 1.5em; color: #00a65a;'></span>";
+                      echo "</div>";
+                      echo "<h4>";
+                      echo $suc_applicant[$i]." <b>(".$suc_department[$i].")</b>";
+                      echo "</h4>";
+                      echo "<p>".$suc_detail[$i]."</p>";
+                      echo "</a>";
+                    }
+                     ?>
+                  </li>
+                  <!-- end message -->
+                </ul>
+              </li>
+              <li class="footer"><a href="#">ดูรายการที่ดำเนินการเสร็จสิ้นแล้วทั้งหมด</a></li>
+            </ul>
+          </li>
+
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
