@@ -4,6 +4,7 @@
   <?php
   session_start();
   include("connect.php");
+  include("function.php");
   if(!isset($_SESSION['u_id']) && $_COOKIE['cook']==""){
     echo "<meta http-equiv='refresh' content='0;url=login.php'>";
   }

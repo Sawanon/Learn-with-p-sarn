@@ -97,24 +97,5 @@ $_SESSION['menu'] = 3;
 include("footer.php");
  ?>
  <script>
- $(document).ready(function() {
-   <?php
-   for ($i=0; $i <= $count ; $i++) {
-     echo "$('#d".$uid[$i]."').click(function() {";
-     echo "$('#testval').val($('#d".$uid[$i]."').val());";
-     echo "});";
-   }
-    ?>
- });
-   $(function () {
-     $('#example1').DataTable()
-     $('table').DataTable({
-       'paging'      : true,
-       'lengthChange': false,
-       'searching'   : false,
-       'ordering'    : true,
-       'info'        : true,
-       'autoWidth'   : false
-     })
-   })
+
  </script>
