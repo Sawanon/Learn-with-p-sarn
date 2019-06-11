@@ -107,55 +107,100 @@
             AND user.u_department = '".$_SESSION['department']."'
             AND b_status = 'A'
             AND applicant_id = user.u_id";
-          }else{
-            $request = "SELECT *
+            $approved = "SELECT *
             FROM booking,user
             WHERE u_id = '".$_SESSION['u_id']."'
             AND user.u_department = '".$_SESSION['department']."'
-            AND b_status = 'A'
+            AND b_status = 'B'
             AND applicant_id = user.u_id";
+            $success = "SELECT *
+            FROM booking,user
+            WHERE u_id = '".$_SESSION['u_id']."'
+            AND user.u_department = '".$_SESSION['department']."'
+            AND b_status = 'D'
+            AND applicant_id = user.u_id";
+            $cancel = "SELECT *
+            FROM booking,user
+            WHERE u_id = '".$_SESSION['u_id']."'
+            AND user.u_department = '".$_SESSION['department']."'
+            AND b_status = 'C'
+            AND applicant_id = user.u_id";
+          }else if($_SESSION['permit']==3){
+            $approved = "SELECT *
+            FROM booking,user
+            WHERE b_status ='B'
+            AND applicant_id = user.u_id
+            ORDER BY b_id DESC";
+            $success = "SELECT *
+            FROM booking,user
+            WHERE driver_id = '".$_SESSION['u_id']."'
+            AND b_status = 'D'
+            AND applicant_id = user.u_id";
+          }else if($_SESSION['permit']==4){
+            $request = "SELECT *
+            FROM booking,user
+            WHERE b_status ='A'
+            AND applicant_id = user.u_id
+            ORDER BY b_id DESC";
+            $approved = "SELECT *
+            FROM booking,user
+            WHERE b_status ='B'
+            AND applicant_id = user.u_id
+            ORDER BY b_id DESC";
+            $success = "SELECT *
+            FROM booking,user
+            WHERE b_status ='D'
+            AND applicant_id = user.u_id
+            ORDER BY b_id DESC";
+            $cancel = "SELECT *
+            FROM booking,user
+            WHERE b_status ='C'
+            AND applicant_id = user.u_id
+            ORDER BY b_id DESC";
           }
-          $query = $conn->query($request);
-          while ($result = $query->fetch_array()) {
-            $req_applicant[] = $result['u_fname'];
-            $req_detail[] = $result['b_detail'];
-            $req_department[] = $result['u_department'];
-            $list_req++;
-          }
-           ?>
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-danger"><?php echo $list_req; ?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">ขออนุมัติ <?php echo $list_req; ?> รายการ</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <?php for ($i=0; $i < $list_req ; $i++) {
-                      echo "<a href='#'>";
-                      echo "<div class='pull-left'>";
-                      echo "<span class='glyphicon glyphicon-exclamation-sign' style='font-size: 1.5em; color: #dd4b39;'></span>";
-                      echo "</div>";
-                      echo "<h4>";
-                      echo $req_applicant[$i]." <b>(".$req_department[$i].")</b>";
-                      echo "</h4>";
-                      echo "<p>".$req_detail[$i]."</p>";
-                      echo "</a>";
-                    }
-                    ?>
-                  </li>
-                  <!-- end message -->
-                </ul>
-              </li>
-              <li class="footer"><a href="#">ดูรายการที่ขออนุมัติทั้งหมด</a></li>
-            </ul>
-          </li>
+          if($_SESSION['permit']!=3){
+            $query = $conn->query($request);
+            while ($result = $query->fetch_array()) {
+              $req_applicant[] = $result['u_fname'];
+              $req_detail[] = $result['b_detail'];
+              $req_department[] = $result['u_department'];
+              $list_req++;
+            }
+            ?>
+            <!-- Messages: style can be found in dropdown.less-->
+            <li class="dropdown messages-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i>
+                <span class="label label-danger"><?php echo $list_req; ?></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">ขออนุมัติ <?php echo $list_req; ?> รายการ</li>
+                <li>
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                    <li><!-- start message -->
+                      <?php for ($i=0; $i < $list_req ; $i++) {
+                        echo "<a href='#'>";
+                        echo "<div class='pull-left'>";
+                        echo "<span class='glyphicon glyphicon-exclamation-sign' style='font-size: 1.5em; color: #dd4b39;'></span>";
+                        echo "</div>";
+                        echo "<h4>";
+                        echo $req_applicant[$i]." <b>(".$req_department[$i].")</b>";
+                        echo "</h4>";
+                        echo "<p>".$req_detail[$i]."</p>";
+                        echo "</a>";
+                      }
+                      ?>
+                    </li>
+                    <!-- end message -->
+                  </ul>
+                </li>
+                <li class="footer"><a href="#">ดูรายการที่ขออนุมัติทั้งหมด</a></li>
+              </ul>
+            </li>
 
-          <?php
+            <?php
+          }
           $query = $conn->query($approved);
           while ($result = $query->fetch_array()) {
             $app_applicant[] = $result['u_fname'];

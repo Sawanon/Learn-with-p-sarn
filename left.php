@@ -35,6 +35,19 @@
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
+            <span class="pull-right-container">
+              <?php
+              if($list_suc!=0){
+                echo "<small class='label pull-right bg-green'>".$list_suc."</small>";
+              }
+              if ($list_app!=0) {
+                echo "<small class='label pull-right bg-yellow'>".$list_app."</small>";
+              }
+              if($list_req!=0){
+                echo "<small class='label pull-right bg-red'>".$list_req."</small>";
+              }
+              ?>
+            </span>
           </a>
           <ul class="treeview-menu">
             <li id="m1"><a href="index.php"><i class="fa fa-circle-o"></i>หน้าแรก</a></li>
@@ -42,6 +55,7 @@
             <?php if($_SESSION['permit']==4){ ?>
               <li id="m3"><a href="manageuser.php"><i class="fa fa-circle-o"></i>จัดการผู้ใช้</a></li>
             <?php } ?>
+            <li id="m4"><a href="request.php"><i class="fa fa-circle-o"></i>รายการขออนุมัติ</a></li>
           </ul>
         </li>
         <li class="header">LABELS</li>
