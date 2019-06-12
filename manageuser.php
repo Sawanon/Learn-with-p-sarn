@@ -19,9 +19,7 @@ $_SESSION['menu'] = 3;
             <thead>
             <tr>
               <th>ID</th>
-              <th>คำนำหน้า</th>
-              <th>ชื่อ</th>
-              <th>นามสกุล</th>
+              <th>ชื่อ-นามสกุล</th>
               <th>เบอร์โทรศัพท์</th>
               <th>อีเมล์</th>
               <th>ที่อยู่</th>
@@ -41,9 +39,7 @@ $_SESSION['menu'] = 3;
             while ($result = $query->fetch_array()) {
               echo "<tr>";
               echo "<td>".$result['u_id']."</td>";
-              echo "<td>".$result['u_prefix']."</td>";
-              echo "<td>".$result['u_fname']."</td>";
-              echo "<td>".$result['u_lname']."</td>";
+              echo "<td>".$result['u_prefix']." ".$result['u_fname']." ".$result['u_lname']."</td>";
               echo "<td>".$result['u_tel']."</td>";
               echo "<td>".$result['u_email']."</td>";
               echo "<td>".$result['u_address']."</td>";

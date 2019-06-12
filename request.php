@@ -57,6 +57,7 @@ $_SESSION['menu'] = 4;
      </div>
    </section>
  </div>
+ <!--modal approve-->
 <form action="requestsql.php" method="post">
   <div class="modal modal-success fade" id="modal-success">
     <div class="modal-dialog">
@@ -82,6 +83,7 @@ $_SESSION['menu'] = 4;
 </form>
  <!-- /.modal -->
 
+<!--modal cancel-->
  <form action="requestsql.php" method="post">
    <div class="modal modal-danger fade" id="modal-danger">
      <div class="modal-dialog">
@@ -89,15 +91,16 @@ $_SESSION['menu'] = 4;
          <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span></button>
-             <h3 class="modal-title">อนุมัติ</h3>
+             <h3 class="modal-title">ไม่อนุมัติ</h3>
            </div>
            <div class="modal-body">
-             <p style='font-size: 18px;'>คุณต้องการอนุมัติรายการนี้หรือไม่</p>
-             <input type="text" name="b_id" id="testvalcancel" value="">
+             <p style='font-size: 18px;'>คุณต้องการปฏิเสธรายการนี้หรือไม่</p>
+             <input type="hidden" name="b_id" id="testvalcancel" value="">
+             <input type="hidden" name="cancel" value="cancel">
            </div>
            <div class="modal-footer">
              <button type="button" class="btn btn-outline pull-left" data-dismiss="modal"><span style='font-size: 18px;'>ยกเลิก</span></button>
-             <button type="submit" class="btn btn-outline"><span style='font-size: 18px;'>อนุมัติ</span></button>
+             <button type="submit" class="btn btn-outline"><span style='font-size: 18px;'>ไม่อนุมัติ</span></button>
            </div>
          </div>
          <!-- /.modal-content -->
