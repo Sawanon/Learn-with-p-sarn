@@ -29,11 +29,6 @@ $_SESSION['tc_id'] = $_POST['tc_id'];
            <textarea name="detail" class="form-control" rows="5" cols="80" required></textarea>
            <button class="btn btn-primary" type="submit" name="button">ต่อไป</button>
          </form>
-         <?php
-         echo $_POST['tc_id'];
-         echo "<br>";
-         echo $_SESSION['date'];
-         ?>
        </div>
      </div>
    </section>

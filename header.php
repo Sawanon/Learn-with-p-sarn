@@ -203,6 +203,7 @@
             <?php
           }
           $query = $conn->query($approved);
+          $list_app = 0;
           while ($result = $query->fetch_array()) {
             $app_applicant[] = $result['u_fname'];
             $app_detail[] = $result['b_detail'];
@@ -245,6 +246,7 @@
 
           <?php
           $query = $conn->query($success);
+          $list_suc = 0;
           while ($result = $query->fetch_array()) {
             $suc_applicant[] = $result['u_fname'];
             $suc_detail[] = $result['b_detail'];

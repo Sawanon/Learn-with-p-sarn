@@ -9,7 +9,6 @@ include("left.php");
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <?php
-    echo $_COOKIE['cook'];
     $_SESSION['menu'] = 1;
      ?>
      <section class="content-header">

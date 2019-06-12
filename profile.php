@@ -42,7 +42,7 @@ $query = $conn->query($strsql);
              <label>อีเมล์</label>
              <input class="form-control" type="email" name="email" value="<?php echo $result['u_email']; ?>" placeholder="อีเมล์">
              <?php
-             if($_GET['error']=="2"){
+             if(@$_GET['error']=="2"){
                echo "<h4 style='color: #f62a2a;'>อีเมล์ ".$_GET['email']." มีอยู่ในระบบแล้ว</h4>";
              }
               ?>
@@ -63,7 +63,7 @@ $query = $conn->query($strsql);
                  <input type="hidden" name="checkimg" value="<?php echo $result['u_signature']; ?>">
                  <?php
                 }
-                if($_GET['error']=="1"){
+                if(@$_GET['error']=="1"){
                   echo "<h4 style='color: #f62a2a;'>กรุณาอัพโหลดไฟล์ .png</h4>";
                 }
                   ?>

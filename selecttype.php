@@ -42,7 +42,7 @@ $query = $conn->query($strsql);
                   <br>
                 <?php } ?>
               </div>
-              <input type="text" name="" value="<?php echo $_SESSION['date']; ?>">
+              <!--เอาไว้ดูว่าวันเวลามาถึงหน้านี้ไหม<input type="text" name="" value="<?php echo $_SESSION['date']; ?>">-->
               <button class="btn btn-primary" type="submit" name="button">ต่อไป</button>
             </form>
           </div>
