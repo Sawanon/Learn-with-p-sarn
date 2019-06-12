@@ -14,4 +14,15 @@ function Changeformatdate($date,$format){
     return $year;
   }
 }
+
+/*function Updatesql($table,$set,$where){
+  include("connect.php");
+  $sql = "UPDATE ";
+  $sql .= $table;
+  $sql .= " SET ";
+  $sql .= $set;
+  $sql .= " WHERE ";
+  $sql .= $where.";";
+  return $sql;
+}*/
  ?>

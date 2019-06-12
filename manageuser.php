@@ -67,27 +67,27 @@ $_SESSION['menu'] = 3;
     </div>
     <!------------------------------>
     <form action="manageusersql.php" method="post">
-    <div class="modal modal-danger fade" id="modal-danger">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">ลบรายการดังกล่าว</h4>
+      <div class="modal modal-danger fade" id="modal-danger">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">ลบรายการดังกล่าว</h4>
+              </div>
+              <div class="modal-body">
+                <p>คุณต้องการลบรายการนี้หรือไม่</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">ยกเลิก</button>
+                <input id="testval" type="hidden" name="uid" value="">
+                <button type="submit" class="btn btn-outline">ตกลง</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
           </div>
-          <div class="modal-body">
-            <p>คุณต้องการลบรายการนี้หรือไม่</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">ยกเลิก</button>
-            <input id="testval" type="hidden" name="uid" value="">
-            <button type="submit" class="btn btn-outline">ตกลง</button>
-          </div>
+          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
-    </div>
     </form>
     <!-- /.modal -->
   </section>

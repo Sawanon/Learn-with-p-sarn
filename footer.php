@@ -1,5 +1,5 @@
 <footer class="main-footer">
-  
+
    test
 </footer>
 
@@ -88,6 +88,11 @@ $(document).ready(function () {
   for ($i=0; $i <= $count ; $i++) {
     echo "$('#d".$uid[$i]."').click(function() {";
     echo "$('#testval').val($('#d".$uid[$i]."').val());";
+    echo "});";
+  }
+  for ($i=0; $i <= $count ; $i++) {
+    echo "$('#dcancel".$uid[$i]."').click(function() {";
+    echo "$('#testvalcancel').val($('#dcancel".$uid[$i]."').val());";
     echo "});";
   }
    ?>
