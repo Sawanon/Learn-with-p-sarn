@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 10, 2019 at 10:24 AM
+-- Generation Time: Jun 11, 2019 at 10:15 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -136,8 +136,7 @@ INSERT INTO `user` (`u_id`, `u_prefix`, `u_fname`, `u_lname`, `u_tel`, `u_email`
 (2, 'นาง', 'ยืมรถ', 'หน่อยจ้า', '0854875464', '3bb@coldmail.com', '', '4e02771b55c0041180efc9fca6e04a77', '81dc9bdb52d04dc20036dbd8313ed055', '2', 'Sale', 's_2.png'),
 (3, 'นางสาว', 'ขอขับ', 'หน่อยจ้า', '0854541445', 'wingbeabpeetoon@wingmail.com', '', 'e2d45d57c7e2941b65c6ccd64af4223e', '81dc9bdb52d04dc20036dbd8313ed055', '3', 'Driver', ''),
 (4, 'นาย', 'ชูศักดิ์', 'หลักกิจเปร่งโปมโนเปร่งปรั่ง', '0954544545', 'test@hotmail.com', '', '098f6bcd4621d373cade4e832627b4f6', '81dc9bdb52d04dc20036dbd8313ed055', '4', 'IT', ''),
-(11, 'นาย', 'test1', 'test1', '084565dasd', 'asd@asd', '', '5a105e8b9d40e1329780d62ea2265d8a', '5a105e8b9d40e1329780d62ea2265d8a', '2', 'IT', ''),
-(12, 'นางสาว', 'test2', 'test2', '084565fsd5', 'asd@asdpoagf', '', 'ad0234829205b9033196ba818f7a872b', 'ad0234829205b9033196ba818f7a872b', '1', 'Sale', '');
+(11, 'นาย', 'test1', 'test1', '084565dasd', 'asd@asd', '', '5a105e8b9d40e1329780d62ea2265d8a', '5a105e8b9d40e1329780d62ea2265d8a', '2', 'IT', '');
 
 --
 -- Indexes for dumped tables
@@ -200,7 +199,7 @@ ALTER TABLE `type_car`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
