@@ -30,7 +30,8 @@ $_SESSION['menu'] = 4;
              FROM booking,user,type_car
              WHERE applicant_id = user.u_id
              AND booking.tc_id = type_car.tc_id
-             AND b_status = 'A'";
+             AND b_status = 'A'
+             AND u_department = '".$_SESSION['department']."'";
              $query = $conn->query($strsql);
              $count = 0;
              while ($result = $query->fetch_array()) {
