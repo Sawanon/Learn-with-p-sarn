@@ -45,6 +45,14 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <style media="screen">
+    .green{
+      background-color: #4eb629;
+    }
+    .removegreen{
+      background-color: #ffffff;
+    }
+  </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -162,6 +170,7 @@
           if($_SESSION['permit']!=3){
             $query = $conn->query($request);
             while ($result = $query->fetch_array()) {
+              $req_id[] = $result['b_id'];
               $req_applicant[] = $result['u_fname'];
               $req_detail[] = $result['b_detail'];
               $req_department[] = $result['u_department'];
@@ -181,7 +190,7 @@
                   <ul class="menu">
                     <li><!-- start message -->
                       <?php for ($i=0; $i < $list_req ; $i++) {
-                        echo "<a href='#'>";
+                        echo "<a href='request.php?selected=".$req_id[$i]."'>";
                         echo "<div class='pull-left'>";
                         echo "<span class='glyphicon glyphicon-exclamation-sign' style='font-size: 1.5em; color: #dd4b39;'></span>";
                         echo "</div>";

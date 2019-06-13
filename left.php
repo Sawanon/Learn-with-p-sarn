@@ -55,13 +55,25 @@
             <?php if($_SESSION['permit']==4){ ?>
               <li id="m3"><a href="manageuser.php"><i class="fa fa-circle-o"></i>จัดการผู้ใช้</a></li>
             <?php } ?>
-            <li id="m4"><a href="request.php"><i class="fa fa-circle-o"></i>รายการขออนุมัติ</a></li>
+            <li id="m4">
+              <a href="request.php"><i class="fa fa-circle-o"></i>ขออนุมัติ
+                <small class='label pull-right bg-red'><?php echo $list_req; ?></small>
+              </a>
+            </li>
+            <li id="m5">
+              <a href="approved.php"><i class="fa fa-circle-o"></i>ผ่านการอนุมัติ
+                <small class='label pull-right bg-yellow'><?php echo $list_app; ?></small>
+              </a>
+            </li>
+            <li id="m6">
+              <a href="request.php"><i class="fa fa-circle-o"></i>ดำเนินการเสร็จสิ้น
+                <small class='label pull-right bg-green'><?php echo $list_suc; ?></small>
+              </a>
+            </li>
           </ul>
         </li>
-        <li class="header">LABELS</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        <li class="header">ฉุกเฉิน</li>
+        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>ติดต่อสอบถามผู้ทำ</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

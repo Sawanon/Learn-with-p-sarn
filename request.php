@@ -34,7 +34,7 @@ $_SESSION['menu'] = 4;
              $query = $conn->query($strsql);
              $count = 0;
              while ($result = $query->fetch_array()) {
-               echo "<tr>";
+               echo "<tr id='row".$result['b_id']."'>";
                echo "<td>".$result['b_id']."</td>";
                echo "<td>".$result['u_prefix']." ".$result['u_fname']." ".$result['u_lname']."</td>";
                echo "<td>".$result['tc_name']."</td>";
@@ -69,7 +69,7 @@ $_SESSION['menu'] = 4;
           </div>
           <div class="modal-body">
             <p style='font-size: 18px;'>คุณต้องการอนุมัติรายการนี้หรือไม่</p>
-            <input type="text" name="b_id" id="testval" value="">
+            <input type="hidden" name="b_id" id="testval" value="">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline pull-left" data-dismiss="modal"><span style='font-size: 18px;'>ยกเลิก</span></button>
@@ -113,5 +113,6 @@ $_SESSION['menu'] = 4;
 include("footer.php");
  ?>
 <script>
-
+$("#row<?php echo $_GET['selected']; ?>").addClass("green");
+$("#row<?php echo $_GET['selected']; ?>").switchClass("green","removegreen",2000);
 </script>
