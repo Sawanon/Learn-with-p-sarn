@@ -15,7 +15,8 @@ function Changeformatdate($date,$format){
   }
 }
 
-/*function Updatesql($table,$set,$where){
+/*หน้าจะยังไม่ได้ใช่เพราะว่าพวก sql มันยังไม่สามารถเรียกใช้ผ่านไฟลือื่นได้ ยังมีปัญหาเกี่ยวกับการดึงตัวแปรการ query นอกไฟล์เพราะยังไม่ได้สร้างตัวแปี
+function Updatesql($table,$set,$where){
   include("connect.php");
   $sql = "UPDATE ";
   $sql .= $table;
